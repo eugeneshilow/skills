@@ -1,0 +1,25 @@
+{
+  "name": "shilov-skills",
+  "owner": {
+    "name": "Eugene Shilov",
+    "url": "https://github.com/eugeneshilow"
+  },
+  "metadata": {
+    "description": "Agent Skills by Eugene Shilov",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "shilov-skills",
+      "source": "./",
+      "description": "All skills in this repository: research-pass, deslop-ru, second-opinion.",
+      "version": "0.1.0",
+      "strict": false,
+      "skills": [
+        "./skills/research-pass",
+        "./skills/deslop-ru",
+        "./skills/second-opinion"
+      ]
+    }
+  ]
+}
