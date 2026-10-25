@@ -11,6 +11,7 @@ These skills grew inside a working company run on [Spec-Driven Company](https://
 | [research-pass](skills/research-pass/) | Research that does not get lost: a dated folder per pass, a synthesis plus the raw agent output, a source URL and date on every fact, a mandatory "Not found" section, and a second agent that tries to disprove the key numbers. | "Research X and keep it as a pass" |
 | [deslop-ru](skills/deslop-ru/) | Removes the traces of machine writing from a Russian text in two passes: a deterministic word scanner, then a fresh-context rhetoric check against a ten-point list. Edits are applied as a "was → now" table. | "Де-слоп этот текст" |
 | [second-opinion](skills/second-opinion/) | An independent review by another model, only where the risk is: money, auth, data schema, deploy, public methodology. Comes with a brief template and read-only launch commands. | "Get a second opinion on this" |
+| [prodamus-payments](skills/prodamus-payments/) | Takes card payments through Prodamus (payform.ru): a signed payment link, a webhook that checks the `Sign` header and records each payment once, a demo-mode test. Signature code in TypeScript and Python, checked against vectors from the official `Hmac.php`. | "Подключи оплату через Продамус" |
 
 ## Install
 

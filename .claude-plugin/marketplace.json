@@ -12,13 +12,14 @@
     {
       "name": "shilov-skills",
       "source": "./",
-      "description": "All skills in this repository: research-pass, deslop-ru, second-opinion.",
+      "description": "All skills in this repository: research-pass, deslop-ru, second-opinion, prodamus-payments.",
       "version": "0.1.0",
       "strict": false,
       "skills": [
         "./skills/research-pass",
         "./skills/deslop-ru",
-        "./skills/second-opinion"
+        "./skills/second-opinion",
+        "./skills/prodamus-payments"
       ]
     }
   ]
