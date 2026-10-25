@@ -1,0 +1,88 @@
+{
+  "about": "Known-answer vectors for the Prodamus signature. 'expected' was computed with the official Hmac.php from help.prodamus.ru (PHP 8, fetched 2026-10-25). Both signers in this folder must reproduce every value.",
+  "vectors": [
+    {
+      "name": "demo-form-link",
+      "source": "Payment-link request for the public demo form; secret is the demo-form key published at help.prodamus.ru",
+      "secret": "2y2aw4oknnke80bp1a8fniwuuq7tdkwmmuq7vwi4nzbr8z1182ftbn6p8mhw3bhz",
+      "data": {
+        "do": "link",
+        "demo_mode": "1",
+        "order_id": "test-1001",
+        "customer_email": "buyer@example.com",
+        "customer_phone": "+79990000000",
+        "products": [
+          {
+            "name": "Доступ к курсу",
+            "price": "100",
+            "quantity": "1"
+          }
+        ],
+        "urlSuccess": "https://example.com/pay/success?order=test-1001",
+        "urlReturn": "https://example.com/pay"
+      },
+      "expected": "654685f85f27a35eabbf00c84c45dbae8a7957b1e04206166ecb6fe9d99cdd06"
+    },
+    {
+      "name": "webhook-success",
+      "source": "Shape of a real payment webhook (field names as Prodamus sends them), fake values",
+      "secret": "test-secret",
+      "data": {
+        "date": "2026-10-25T12:00:00+03:00",
+        "order_id": "48123456",
+        "order_num": "test-1001",
+        "domain": "shop.payform.ru",
+        "sum": "100.00",
+        "currency": "rub",
+        "customer_phone": "+79990000000",
+        "customer_email": "buyer@example.com",
+        "customer_extra": "",
+        "payment_type": "Оплата картой, выпущенной в РФ",
+        "commission": "3.5",
+        "commission_sum": "3.50",
+        "attempt": "1",
+        "products": [
+          {
+            "name": "Доступ к курсу",
+            "price": "100.00",
+            "quantity": "1",
+            "sum": "100.00"
+          }
+        ],
+        "payment_status": "success",
+        "payment_status_description": "Успешная оплата",
+        "payment_init": "manual"
+      },
+      "expected": "b5d25e19d8ad0c437efbd4d677c08180880789dd707c4725f1da4378cb35ccbf"
+    },
+    {
+      "name": "third-party-imnadsa",
+      "source": "Vector from github.com/imnadsa/prodamus-subscription-skill assets/sign-check.mjs (expected there: 903c7bc6e4d2d50b6bae95e5288246623c39ea3aa5b732af9ef954355719f358)",
+      "secret": "demo-secret-key",
+      "data": {
+        "order_num": "tenant-42",
+        "sum": 1490,
+        "customer_phone": "79001234567",
+        "customer_email": "owner@example.com",
+        "payment_status": "success",
+        "payment_init": "manual",
+        "demo_flag": null,
+        "link": "https://example.com/pay/success",
+        "products": [
+          {
+            "name": "Подписка на сервис",
+            "price": "1490",
+            "quantity": "1"
+          }
+        ],
+        "subscription": {
+          "id": "111111",
+          "profile_id": "222222",
+          "type": "action",
+          "action_code": "first_payment"
+        }
+      },
+      "expected": "903c7bc6e4d2d50b6bae95e5288246623c39ea3aa5b732af9ef954355719f358"
+    }
+  ]
+}
