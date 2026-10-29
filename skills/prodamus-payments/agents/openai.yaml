@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prodamus Payments"
+  short_description: "Signed payment link, verified webhook and a demo-mode test for Prodamus"
+  default_prompt: "Use $prodamus-payments to connect card payments through Prodamus to this project."

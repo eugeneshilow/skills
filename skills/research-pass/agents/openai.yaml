@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Pass"
+  short_description: "Research that ends as a dated folder with sources, dates and a Not found section"
+  default_prompt: "Use $research-pass to research this and keep it as a pass in the repository."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Name"
+  short_description: "What the skill does, under 80 characters, for the Codex skill picker"
+  default_prompt: "Use $skill-name to <the job in one sentence>."

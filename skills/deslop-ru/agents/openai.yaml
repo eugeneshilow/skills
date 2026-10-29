@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deslop RU"
+  short_description: "Remove the traces of machine writing from a Russian text in two passes"
+  default_prompt: "Use $deslop-ru on this text. Keep the facts, show the edits as a was → now table."

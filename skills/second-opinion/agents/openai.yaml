@@ -1,0 +1,4 @@
+interface:
+  display_name: "Second Opinion"
+  short_description: "Independent read-only review by another model, only where the risk is"
+  default_prompt: "Use $second-opinion on this change before I lock it in."

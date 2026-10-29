@@ -4,7 +4,7 @@ description: Connects card payments through Prodamus (Продамус, payform.
 license: MIT
 compatibility: Designed for Claude Code; works in any Agent Skills client. Examples target Next.js App Router (Node 18+) and FastAPI (Python 3.10+). Needs a Prodamus payment form (<shop>.payform.ru) and its secret key.
 metadata:
-  author: eugeneshilov
+  author: eugeneshilow
   version: "0.1.0"
 ---
 
@@ -90,7 +90,7 @@ Example: [examples/nextjs/app/api/prodamus/webhook/route.ts](examples/nextjs/app
 
 ### 5. Go live
 
-Remove `PRODAMUS_DEMO`, deploy, run one real payment for the smallest amount, refund it from the cabinet («Список платежей» → payment → refund), and check the "payment went through" list below.
+A webhook that records payments is money code. If the `second-opinion` skill is installed, run it on the signing module and the webhook before this step. Then remove `PRODAMUS_DEMO`, deploy, run one real payment for the smallest amount, refund it from the cabinet («Список платежей» → payment → refund), and check the "payment went through" list below.
 
 ## Done when
 
