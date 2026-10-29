@@ -51,7 +51,7 @@ Language policy: this repository is in English. A skill that works on Russian te
 
 ## Make them yours
 
-These skills are starting points. Edit them. Keep what is personal to you, such as which model gives the second opinion or where research passes live in your repository, in your `CLAUDE.md` or `AGENTS.md`, so you can update the skills without losing it. The skills read the project's rules first and fall back to their own defaults.
+These skills are starting points. Edit them. Keep what is personal to you, such as which model gives the second opinion or where research passes live in your repository, in your `CLAUDE.md` or `AGENTS.md`, so you can update the skills without losing it. The agent reads the project's rules before any skill, so they win.
 
 ## License
 
