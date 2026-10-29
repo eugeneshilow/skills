@@ -2,7 +2,7 @@
 // Validates every skills/*/SKILL.md and the marketplace manifest.
 // Checks: front matter present and well-formed, name matches the folder and the
 // Agent Skills naming rule, description length, body under 500 lines, relative
-// links resolve, marketplace paths exist. Exits 1 on the first problem list.
+// links resolve, agents/openai.yaml present, marketplace paths exist. Exits 1 on the first problem list.
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 
@@ -42,6 +42,9 @@ for (const name of readdirSync(skillsDir)) {
   if ((fields.compatibility || '').length > 500) problems.push(`${name}: compatibility over 500 chars`);
   const lines = body.split('\n').length;
   if (lines > 500) problems.push(`${name}: body has ${lines} lines, max 500`);
+  const card = join(dir, 'agents', 'openai.yaml');
+  if (!existsSync(card)) problems.push(`${name}: agents/openai.yaml missing (Codex skill picker card)`);
+  else if (!/display_name:\s*"[^"]+"/.test(readFileSync(card, 'utf8'))) problems.push(`${name}: agents/openai.yaml has no display_name`);
   for (const m of body.matchAll(/\]\(([^)#]+)(?:#[^)]*)?\)/g)) {
     const target = m[1];
     if (/^[a-z]+:/.test(target)) continue;

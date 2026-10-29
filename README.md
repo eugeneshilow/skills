@@ -29,7 +29,12 @@ As a Claude Code plugin:
 /plugin install shilov-skills@shilov-skills
 ```
 
-By hand: copy a folder from `skills/` into `~/.claude/skills/` (every project) or `.claude/skills/` (one project).
+By hand: copy a folder from `skills/` into `~/.claude/skills/` (every project) or `.claude/skills/` (one project). Codex reads the same folders from `~/.codex/skills/`; every skill carries an `agents/openai.yaml` for its skill picker.
+
+Two skills call another one when it is installed, and work without it:
+
+- `research-pass` hands its adversarial check of the key numbers to `second-opinion`.
+- `prodamus-payments` sends the signing module and the webhook to `second-opinion` before going live.
 
 ## Layout
 
@@ -37,11 +42,16 @@ By hand: copy a folder from `skills/` into `~/.claude/skills/` (every project) o
 skills/<name>/SKILL.md      the skill: name + description in the front matter, instructions in the body
 skills/<name>/references/   details the agent reads only when it needs them
 skills/<name>/scripts/      helpers the skill runs
+skills/<name>/agents/       openai.yaml: name, one line and a default prompt for the Codex skill picker
 template/SKILL.md           starting point for a new skill
 scripts/validate-skills.mjs the check CI runs on every change
 ```
 
 Language policy: this repository is in English. A skill that works on Russian text keeps its Russian examples and word lists as data; the instructions stay in English.
+
+## Make them yours
+
+These skills are starting points. Edit them. Keep what is personal to you, such as which model gives the second opinion or where research passes live in your repository, in your `CLAUDE.md` or `AGENTS.md`, so you can update the skills without losing it. The agent reads the project's rules before any skill, so they win.
 
 ## License
 
