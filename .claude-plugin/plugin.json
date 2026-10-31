@@ -1,9 +1,9 @@
 {
   "name": "shilov-skills",
   "version": "0.1.0",
-  "description": "Crafts for coding agents by Eugene Shilov: research passes that keep provenance, de-slopping Russian text, independent second opinions, Prodamus payments.",
+  "description": "Crafts for coding agents by Evgeny Shilov: research passes that keep provenance, de-slopping Russian text, independent second opinions, Prodamus payments.",
   "author": {
-    "name": "Eugene Shilov",
+    "name": "Evgeny Shilov",
     "url": "https://github.com/eugeneshilow"
   },
   "repository": "https://github.com/eugeneshilow/skills",
