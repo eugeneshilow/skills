@@ -1,11 +1,11 @@
 {
   "name": "shilov-skills",
   "owner": {
-    "name": "Eugene Shilov",
+    "name": "Evgeny Shilov",
     "url": "https://github.com/eugeneshilow"
   },
   "metadata": {
-    "description": "Agent Skills by Eugene Shilov",
+    "description": "Agent Skills by Evgeny Shilov",
     "version": "0.1.0"
   },
   "plugins": [

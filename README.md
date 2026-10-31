@@ -1,6 +1,6 @@
 # skills
 
-Agent Skills by [Eugene Shilov](https://github.com/eugeneshilow): crafts a coding agent can pick up on demand. Each skill is a folder with a `SKILL.md` that follows the [Agent Skills](https://agentskills.io) format, so it works in Claude Code, Codex, Cursor and any other client that reads skills.
+Agent Skills by [Evgeny Shilov](https://github.com/eugeneshilow): crafts a coding agent can pick up on demand. Each skill is a folder with a `SKILL.md` that follows the [Agent Skills](https://agentskills.io) format, so it works in Claude Code, Codex, Cursor and any other client that reads skills.
 
 These skills grew inside a working company run on [Spec-Driven Company](https://github.com/eugeneshilow/spec-driven-company): the method gives the rules every agent reads first; the skills here are the crafts on top of them. Each one is used daily before it is published.
 
