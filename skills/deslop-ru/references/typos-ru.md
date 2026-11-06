@@ -8,7 +8,7 @@ Use only for short conversational text: comments, replies, chat messages, forum 
 
 | pattern | example | how often |
 | --- | --- | --- |
-| adjacent letters swapped in the middle of a long word | интересная → интерсная, посмотреть → псмотреть, чтобы → тчобы | most common |
+| adjacent letters swapped in the middle of a long word | интересная → интерсная, посмотреть → псмотреть, детерминированно → детерменированно | most common |
 | one letter dropped in a long word | опубликуется → опубилкуется, внедрить → внедирть | common |
 | a letter doubled | цифры → ццифры | rare |
 | «ё» typed as «е» everywhere | ещё → еще, её → ее | almost always |
@@ -24,7 +24,7 @@ Use only for short conversational text: comments, replies, chat messages, forum 
 - Names, handles, product names, Latin words: `AGENTS.md`, `Binance`, `SpecScore`, `@astec`, `await`.
 - Anything inside «…» or "…" quotes — a quoted rule is pasted, not typed.
 - Links and code.
-- Short words (five letters and fewer) — the eye catches those.
+- Words shorter than eight letters («тесты», «агенты», «спеки») — the eye catches those; the slips happen in long, tangled words («детерминированно», «контрибьюшенов», «интересная»), and the longer the word, the likelier the slip. The script weights candidates by length.
 - The first and last letter of a word — swaps happen inside.
 
 ## Two levels, chosen by genre

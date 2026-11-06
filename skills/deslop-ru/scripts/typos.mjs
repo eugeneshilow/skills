@@ -41,12 +41,14 @@ let pos = 0
 const candidates = []
 for (let i = 0; i < words.length; i++) {
   const w = words[i]
-  if (/^[а-яА-Я]{6,}[.,:;!?]*$/.test(w) && !isProtected(pos) && !/^[А-Я]/.test(w)) candidates.push(i)
+  // only long words (8+ letters); longer words are more likely — that is where a fast typist slips
+  const mm = w.match(/^([а-яА-Я]{8,})[.,:;!?]*$/)
+  if (mm && !isProtected(pos) && !/^[А-Я]/.test(w)) { const weight = Math.max(1, mm[1].length - 7); for (let k = 0; k < weight; k++) candidates.push(i) }
   pos += w.length
 }
 const usedSentence = new Map()
 let applied = 0
-const shuffled = candidates.sort(() => rnd() - 0.5)
+const shuffled = [...new Set(candidates.sort(() => rnd() - 0.5))]
 for (const i of shuffled) {
   if (applied >= target) break
   const sentenceIdx = words.slice(0, i).join('').split(/[.!?]/).length
