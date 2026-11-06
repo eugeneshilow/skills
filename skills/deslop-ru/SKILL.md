@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Claude Code; works in any Agent Skills client. Needs python3 for the scanner; the rhetoric pass needs a fresh agent context (a subagent or a new session).
 metadata:
   author: eugeneshilow
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # De-slop a Russian text
