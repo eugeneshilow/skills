@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Claude Code; works in any Agent Skills client. Needs python3 for the scanner; the rhetoric pass needs a fresh agent context (a subagent or a new session).
 metadata:
   author: eugeneshilow
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # De-slop a Russian text
@@ -27,6 +27,10 @@ A text can pass every word-level detector and still read as machine-written: the
 6. **Second round** if the editor's score was 5/10 or higher: repeat step 3 on the edited text once.
 7. **Report** in one line: "де-слоп: сканер N/100 → M/100, редактор K/10, внесено X правок, Y спорных — списком ниже". Then the list of disputed edits, if any.
 
+## Optional step — human texture for comments and chat replies
+
+A short reply with zero typos reads as machine-written in a comment thread. For comments, forum replies and chat messages (never for articles or landing copy) run `scripts/typos.mjs reply.txt` after the de-slop passes: it adds two to four fast-typist errors per hundred words — swapped or dropped letters inside long words, «ё» → «е», a few missing commas, hyphen for dash — and prints the list of changes to stderr so the author can veto any. Numbers, names, Latin words, quotes and links are never touched. Patterns and limits: [references/typos-ru.md](references/typos-ru.md).
+
 ## Done when
 
 - Scanner score after edits is 85 or higher, or the remaining flags are explained.
@@ -38,4 +42,5 @@ A text can pass every word-level detector and still read as machine-written: the
 
 - [references/editor-prompt.md](references/editor-prompt.md) — the exact prompt for the rhetoric pass, in Russian, with the ten-point checklist and the editing rules.
 - [references/markers.md](references/markers.md) — the 36 markers of machine-written Russian with their sources; the evidence behind the checklist.
+- [references/typos-ru.md](references/typos-ru.md) — fast-typist error patterns for the optional texture step; `scripts/typos.mjs` applies them.
 - [scripts/scan.sh](scripts/scan.sh) — wrapper that installs and runs the humanizer-ru scanner.
