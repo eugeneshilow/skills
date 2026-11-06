@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Claude Code; works in any Agent Skills client. Needs python3 for the scanner; the rhetoric pass needs a fresh agent context (a subagent or a new session).
 metadata:
   author: eugeneshilow
-  version: "0.3.1"
+  version: "0.3.2"
 ---
 
 # De-slop a Russian text
@@ -29,7 +29,7 @@ A text can pass every word-level detector and still read as machine-written: the
 
 ## Optional step — human texture for comments and chat replies
 
-A short reply with zero typos reads as machine-written in a comment thread. For comments, forum replies and chat messages (never for articles or landing copy) run `scripts/typos.mjs` after the de-slop passes. Two levels, picked by genre: `--level low` (default) for articles, emails and posts adds two to four fast-typist errors per hundred words; `--level high` for comments and chat replies adds six to nine. The errors are — swapped or dropped letters inside long words, «ё» → «е», a few missing commas, hyphen for dash — and prints the list of changes to stderr so the author can veto any. Numbers, names, Latin words, quotes and links are never touched. Patterns and limits: [references/typos-ru.md](references/typos-ru.md).
+A short reply with zero typos reads as machine-written in a comment thread. For comments, forum replies and chat messages (never for articles or landing copy) run `scripts/typos.mjs` after the de-slop passes. Two levels, picked by genre: `--level low` (default) for articles, emails and posts adds one or two fast-typist errors per hundred words; `--level high` for comments and chat replies adds three to five. The errors are — swapped or dropped letters inside long words, «ё» → «е», a few missing commas, hyphen for dash — and prints the list of changes to stderr so the author can veto any. Numbers, names, Latin words, quotes and links are never touched. Patterns and limits: [references/typos-ru.md](references/typos-ru.md).
 
 ## Done when
 
