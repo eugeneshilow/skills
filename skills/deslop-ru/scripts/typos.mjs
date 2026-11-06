@@ -9,7 +9,7 @@ const file = args.find((a) => !a.startsWith('--'))
 if (!file) { console.error('usage: typos.mjs <file.txt> [--level low|high] [--rate N] [--seed N]'); process.exit(2) }
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? Number(args[i + 1]) : d }
 const LEVEL = (() => { const i = args.indexOf('--level'); return i >= 0 ? args[i + 1] : 'low' })()
-const PRESET = LEVEL === 'high' ? { rate: 8, perSentence: 2, comma: 0.7 } : { rate: 3, perSentence: 1, comma: 0.45 }
+const PRESET = LEVEL === 'high' ? { rate: 4, perSentence: 1, comma: 0.4 } : { rate: 1.5, perSentence: 1, comma: 0.2 }
 const RATE = opt('--rate', PRESET.rate)
 let seed = opt('--seed', Date.now() % 100000)
 const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648 }
