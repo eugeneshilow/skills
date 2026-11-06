@@ -27,16 +27,21 @@ Use only for short conversational text: comments, replies, chat messages, forum 
 - Short words (five letters and fewer) — the eye catches those.
 - The first and last letter of a word — swaps happen inside.
 
-## Density
+## Two levels, chosen by genre
 
-Two to four errors per hundred words. One error per sentence at most. Never two errors in one word. A hundred-word reply with eight typos reads as a parody, not as a person.
+| level | where | density | per sentence |
+| --- | --- | --- | --- |
+| `low` (default) | articles, emails, posts, newsletters | 2–4 per 100 words | at most 1 |
+| `high` | comments, forum replies, chat messages | 6–9 per 100 words, more dropped commas | up to 2 |
+
+The agent picks the level from the task: a reply in a comment thread is `high`, anything a reader will see as a finished text is `low`. Documentation, code and quoted rules get none. Never two errors in one word.
 
 ## How to apply
 
 ```bash
-node scripts/typos.mjs reply.txt            # 3 per 100 words, random seed
-node scripts/typos.mjs reply.txt --rate 4   # denser
-node scripts/typos.mjs reply.txt --seed 7   # reproducible
+node scripts/typos.mjs article.txt                 # low: 3 per 100 words
+node scripts/typos.mjs reply.txt --level high      # comments: 8 per 100 words
+node scripts/typos.mjs reply.txt --rate 5 --seed 7 # custom density, reproducible
 ```
 
 The script prints the result to stdout and the list of applied changes to stderr, so the author can veto any of them. Numbers, Latin, quotes and links are skipped by the rules above.

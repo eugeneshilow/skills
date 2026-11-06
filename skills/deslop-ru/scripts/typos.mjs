@@ -6,9 +6,11 @@ import fs from 'node:fs'
 
 const args = process.argv.slice(2)
 const file = args.find((a) => !a.startsWith('--'))
-if (!file) { console.error('usage: typos.mjs <file.txt> [--rate N] [--seed N]'); process.exit(2) }
+if (!file) { console.error('usage: typos.mjs <file.txt> [--level low|high] [--rate N] [--seed N]'); process.exit(2) }
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? Number(args[i + 1]) : d }
-const RATE = opt('--rate', 3)
+const LEVEL = (() => { const i = args.indexOf('--level'); return i >= 0 ? args[i + 1] : 'low' })()
+const PRESET = LEVEL === 'high' ? { rate: 8, perSentence: 2, comma: 0.7 } : { rate: 3, perSentence: 1, comma: 0.45 }
+const RATE = opt('--rate', PRESET.rate)
 let seed = opt('--seed', Date.now() % 100000)
 const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648 }
 
@@ -26,7 +28,7 @@ text = text.replace(/ — /g, (m, off) => (isProtected(off) ? m : ' - '))
 
 // 3. drop some commas before conjunctions
 text = text.replace(/,( (?:что|если|где|как|чтобы|когда|потому) )/g, (m, g, off) => {
-  if (isProtected(off) || rnd() > 0.45) return m
+  if (isProtected(off) || rnd() > PRESET.comma) return m
   log.push(`запятая снята перед «${g.trim()}»`)
   return g
 })
@@ -42,13 +44,13 @@ for (let i = 0; i < words.length; i++) {
   if (/^[а-яА-Я]{6,}[.,:;!?]*$/.test(w) && !isProtected(pos) && !/^[А-Я]/.test(w)) candidates.push(i)
   pos += w.length
 }
-let usedSentence = new Set()
+const usedSentence = new Map()
 let applied = 0
 const shuffled = candidates.sort(() => rnd() - 0.5)
 for (const i of shuffled) {
   if (applied >= target) break
   const sentenceIdx = words.slice(0, i).join('').split(/[.!?]/).length
-  if (usedSentence.has(sentenceIdx)) continue
+  if ((usedSentence.get(sentenceIdx) || 0) >= PRESET.perSentence) continue
   const m = words[i].match(/^([а-яА-Я]+)([.,:;!?]*)$/)
   const w = m[1], tail = m[2]
   const k = 1 + Math.floor(rnd() * (w.length - 3)) // index of error, never first/last letter
@@ -60,8 +62,8 @@ for (const i of shuffled) {
   if (nw === w) continue
   words[i] = nw + tail
   log.push(`${w} → ${nw}`)
-  usedSentence.add(sentenceIdx)
+  usedSentence.set(sentenceIdx, (usedSentence.get(sentenceIdx) || 0) + 1)
   applied++
 }
 process.stdout.write(words.join(''))
-console.error(`typos: ${log.length} правок на ${wordCount} слов (seed ${seed})\n- ` + log.join('\n- '))
+console.error(`typos (${LEVEL}): ${log.length} правок на ${wordCount} слов (seed ${seed})\n- ` + log.join('\n- '))
