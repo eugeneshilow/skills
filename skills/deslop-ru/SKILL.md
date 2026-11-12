@@ -5,7 +5,7 @@ license: MIT
 compatibility: Designed for Claude Code; works in any Agent Skills client. Needs python3 for the scanner; the rhetoric pass needs a fresh agent context (a subagent or a new session).
 metadata:
   author: eugeneshilow
-  version: "0.3.2"
+  version: "0.4.0"
 ---
 
 # De-slop a Russian text
@@ -27,9 +27,9 @@ A text can pass every word-level detector and still read as machine-written: the
 6. **Second round** if the editor's score was 5/10 or higher: repeat step 3 on the edited text once.
 7. **Report** in one line: "де-слоп: сканер N/100 → M/100, редактор K/10, внесено X правок, Y спорных — списком ниже". Then the list of disputed edits, if any.
 
-## Optional step — human texture for comments and chat replies
+## Typos are not part of de-slop
 
-A short reply with zero typos reads as machine-written in a comment thread. For comments, forum replies and chat messages (never for articles or landing copy) run `scripts/typos.mjs` after the de-slop passes. Two levels, picked by genre: `--level low` (default) for articles, emails and posts adds one or two fast-typist errors per hundred words; `--level high` for comments and chat replies adds three to five. The errors are — swapped or dropped letters inside long words, «ё» → «е», a few missing commas, hyphen for dash — and prints the list of changes to stderr so the author can veto any. Numbers, names, Latin words, quotes and links are never touched. Patterns and limits: [references/typos-ru.md](references/typos-ru.md).
+De-slop never adds typos. Typos are off by default and go into a text only when the user asks for them for that text. The rule, levels and script live in their own file: [references/typos-ru.md](references/typos-ru.md).
 
 ## Done when
 
@@ -42,5 +42,5 @@ A short reply with zero typos reads as machine-written in a comment thread. For 
 
 - [references/editor-prompt.md](references/editor-prompt.md) — the exact prompt for the rhetoric pass, in Russian, with the ten-point checklist and the editing rules.
 - [references/markers.md](references/markers.md) — the 36 markers of machine-written Russian with their sources; the evidence behind the checklist.
-- [references/typos-ru.md](references/typos-ru.md) — fast-typist error patterns for the optional texture step; `scripts/typos.mjs` applies them.
+- [references/typos-ru.md](references/typos-ru.md) — typos: off by default, added only on the user's request; patterns, levels and `scripts/typos.mjs`.
 - [scripts/scan.sh](scripts/scan.sh) — wrapper that installs and runs the humanizer-ru scanner.
