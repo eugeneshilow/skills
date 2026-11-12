@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Adds human typing texture to a short Russian text: swapped/dropped letters in long
 // words, «ё»→«е», a few dropped commas, hyphen for dash. Skips numbers, Latin, quotes,
-// links. Patterns and limits: references/typos-ru.md.
+// links. Off by default: run only when the user asks for typos in a given text.
+// Rule, patterns and limits: references/typos-ru.md.
 import fs from 'node:fs'
 
 const args = process.argv.slice(2)

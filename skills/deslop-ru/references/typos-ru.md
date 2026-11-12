@@ -1,8 +1,12 @@
-# Human texture: typo patterns of a fast Russian typist
+# Typos: off by default
+
+**No typos unless the user asks.** De-slop does not add them, and no genre turns them on by itself: not an article, not an email, not a comment reply. The script below runs only when the user asks for typos in a specific text, and the user names the level. Everything else in this file describes how to do it once asked.
+
+## Why the option exists
 
 A clean text with zero typos reads as machine-written in a comment thread or a chat reply. Real people who type fast leave a recognisable texture. This file lists the patterns that `scripts/typos.mjs` reproduces, so a reply gets the same kind of errors a person makes, at the same density, and never in the places a person would not make them.
 
-Use only for short conversational text: comments, replies, chat messages, forum posts. Never for articles, landing copy, documentation or anything with a proofreading step.
+Even on request, never for documentation, code, quoted rules or anything with a proofreading step.
 
 ## Where a fast typist makes errors
 
@@ -27,20 +31,20 @@ Use only for short conversational text: comments, replies, chat messages, forum 
 - Words shorter than eight letters («тесты», «агенты», «спеки») — the eye catches those; the slips happen in long, tangled words («детерминированно», «контрибьюшенов», «интересная»), and the longer the word, the likelier the slip. The script weights candidates by length.
 - The first and last letter of a word — swaps happen inside.
 
-## Two levels, chosen by genre
+## Two levels, chosen by the user
 
 | level | where | density | per sentence |
 | --- | --- | --- | --- |
-| `low` (default) | articles, emails, posts, newsletters | 1–2 per 100 words | at most 1 |
-| `high` | comments, forum replies, chat messages | 3–5 per 100 words, a few dropped commas | at most 1 |
+| `low` | a light touch for longer text | 1–2 per 100 words | at most 1 |
+| `high` | short chat-style replies | 3–5 per 100 words, a few dropped commas | at most 1 |
 
-The agent picks the level from the task: a reply in a comment thread is `high`, anything a reader will see as a finished text is `low`. Documentation, code and quoted rules get none. Never two errors in one word.
+The user picks the level; if they asked for typos without one, use `low`. Never two errors in one word.
 
 ## How to apply
 
 ```bash
-node scripts/typos.mjs article.txt                 # low: ~1.5 per 100 words
-node scripts/typos.mjs reply.txt --level high      # comments: ~4 per 100 words
+node scripts/typos.mjs text.txt                    # low: ~1.5 per 100 words
+node scripts/typos.mjs reply.txt --level high      # high: ~4 per 100 words
 node scripts/typos.mjs reply.txt --rate 5 --seed 7 # custom density, reproducible
 ```
 
